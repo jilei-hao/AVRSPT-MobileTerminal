@@ -1,12 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Text>Time Series </Text>
+      <WebView 
+        injectedJavaScriptBeforeContentLoaded={`
+          window.onerror = function(message, sourcefile, lineno, colno, error) {
+            alert("Message: " + message + " - Source: " + sourcefile + " Line: " + lineno + ":" + colno);
+            return true;
+          };
+          true;
+        `}
+        source={{ uri: 'http://localhost:8080/' }} 
+      />
+    </SafeAreaView>
   );
 }
 
@@ -18,3 +29,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+class MyWeb extends Component {
+  render() {
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <Text>Time Series </Text>
+        <WebView 
+          source={{ uri: 'https://kitware.github.io/vtk-js/examples/TimeSeries/index.html' }} 
+        />
+      </SafeAreaView>
+    );
+  }
+}
