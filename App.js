@@ -1,22 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { Component } from 'react'
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import React, { useState } from 'react'
+import { StyleSheet, Text, SafeAreaView, View, Button, Pressable} from 'react-native';
 import { WebView } from 'react-native-webview';
 
 export default function App() {
+  const [viewURL, setViewURL] = useState('http://10.102.165.25:5173')
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Text>Time Series </Text>
-      <WebView 
-        injectedJavaScriptBeforeContentLoaded={`
-          window.onerror = function(message, sourcefile, lineno, colno, error) {
-            alert("Message: " + message + " - Source: " + sourcefile + " Line: " + lineno + ":" + colno);
-            return true;
-          };
-          true;
-        `}
-        source={{ uri: 'http://localhost:8080/' }} 
-      />
+      <WebView source={{ uri: viewURL }} />
+      <View style={styles.main_control}>
+        <Pressable style={styles.main_pressable}
+          onPress={() => setViewURL('http://10.102.165.25:5173')}
+          >
+          <Text>Menu</Text>
+        </Pressable>
+        <Pressable style={styles.main_pressable}
+          onPress={() => setViewURL('http://10.102.165.25:5173/model')}
+          >
+          <Text>Model</Text>
+        </Pressable>
+        <Pressable style={styles.main_pressable}
+          onPress={() => setViewURL(
+            'https://kitware.github.io/vtk-js/examples/MultiSliceImageMapper/index.html'
+            )}
+          >
+          <Text>Slices</Text>
+        </Pressable>
+        <Pressable style={styles.main_pressable}
+          onPress={() => setViewURL(
+            'https://kitware.github.io/vtk-js/examples/VolumeMapperBlendModes/index.html'
+            )}
+          >
+          <Text>Volume</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 }
@@ -28,18 +47,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
-
-
-class MyWeb extends Component {
-  render() {
-    return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <Text>Time Series </Text>
-        <WebView 
-          source={{ uri: 'https://kitware.github.io/vtk-js/examples/TimeSeries/index.html' }} 
-        />
-      </SafeAreaView>
-    );
+  main_control: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    padding: 20,
+  },
+  main_pressable: {
+    backgroundColor: '#d9d9d9',
+    padding: 10,
+    marginHorizontal: 10,
   }
-}
+  
+});
