@@ -4,36 +4,35 @@ import { StyleSheet, Text, SafeAreaView, View, Button, Pressable} from 'react-na
 import { WebView } from 'react-native-webview';
 
 export default function App() {
-  const [viewURL, setViewURL] = useState('http://10.102.165.25:5173')
+  const [viewURL, setViewURL] = useState('http://10.102.180.67:5173')
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Text>Time Series </Text>
       <WebView source={{ uri: viewURL }} />
       <View style={styles.main_control}>
         <Pressable style={styles.main_pressable}
-          onPress={() => setViewURL('http://10.102.165.25:5173')}
+          onPress={() => setViewURL('http://10.102.180.67:5173')}
           >
-          <Text>Menu</Text>
+          <Text style={styles.button_text}>Menu</Text>
         </Pressable>
         <Pressable style={styles.main_pressable}
-          onPress={() => setViewURL('http://10.102.165.25:5173/model')}
+          onPress={() => setViewURL('http://10.102.180.67:5173/model')}
           >
-          <Text>Model</Text>
+          <Text style={styles.button_text}>Model</Text>
         </Pressable>
         <Pressable style={styles.main_pressable}
           onPress={() => setViewURL(
             'https://kitware.github.io/vtk-js/examples/MultiSliceImageMapper/index.html'
             )}
           >
-          <Text>Slices</Text>
+          <Text style={styles.button_text}>Slices</Text>
         </Pressable>
         <Pressable style={styles.main_pressable}
           onPress={() => setViewURL(
             'https://kitware.github.io/vtk-js/examples/VolumeMapperBlendModes/index.html'
             )}
           >
-          <Text>Volume</Text>
+          <Text style={styles.button_text}>Volume</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -55,9 +54,17 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   main_pressable: {
+    justifyContent: 'center',
     backgroundColor: '#d9d9d9',
     padding: 10,
     marginHorizontal: 10,
+    height: 70,
+    width: 100,
+    borderRadius: 10,
+  },
+  button_text: {
+    textAlign: 'center',
+    fontSize: 25,
   }
   
 });
