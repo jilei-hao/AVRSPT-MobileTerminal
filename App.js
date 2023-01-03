@@ -4,33 +4,32 @@ import { StyleSheet, Text, SafeAreaView, View, Button, Pressable} from 'react-na
 import { WebView } from 'react-native-webview';
 
 export default function App() {
-  const [viewURL, setViewURL] = useState('http://10.102.180.67:5173')
+  const rootURL = 'http://192.168.50.37:5173'
+  // const rootURL = 'http://10.102.180.67:5173'
+
+  const [viewURL, setViewURL] = useState(rootURL);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <WebView source={{ uri: viewURL }} />
       <View style={styles.main_control}>
         <Pressable style={styles.main_pressable}
-          onPress={() => setViewURL('http://10.102.180.67:5173')}
+          onPress={() => setViewURL(rootURL)}
           >
           <Text style={styles.button_text}>Menu</Text>
         </Pressable>
         <Pressable style={styles.main_pressable}
-          onPress={() => setViewURL('http://10.102.180.67:5173/model')}
+          onPress={() => setViewURL(`${rootURL}/model`)}
           >
           <Text style={styles.button_text}>Model</Text>
         </Pressable>
         <Pressable style={styles.main_pressable}
-          onPress={() => setViewURL(
-            'http://10.102.180.67:8080/'
-            )}
+          onPress={() => setViewURL(`${rootURL}/slices`)}
           >
           <Text style={styles.button_text}>Slices</Text>
         </Pressable>
         <Pressable style={styles.main_pressable}
-          onPress={() => setViewURL(
-            'http://10.102.180.67:8081/'
-            )}
+          onPress={() => setViewURL(`${rootURL}/volume`)}
           >
           <Text style={styles.button_text}>Volume</Text>
         </Pressable>
