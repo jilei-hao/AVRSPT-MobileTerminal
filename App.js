@@ -22,14 +22,14 @@ export default function App() {
         </Pressable>
         <Pressable style={styles.main_pressable}
           onPress={() => setViewURL(
-            'https://kitware.github.io/vtk-js/examples/MultiSliceImageMapper/index.html'
+            'http://10.102.180.67:8080/'
             )}
           >
           <Text style={styles.button_text}>Slices</Text>
         </Pressable>
         <Pressable style={styles.main_pressable}
           onPress={() => setViewURL(
-            'https://kitware.github.io/vtk-js/examples/VolumeMapperBlendModes/index.html'
+            'http://10.102.180.67:8081/'
             )}
           >
           <Text style={styles.button_text}>Volume</Text>
