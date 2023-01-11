@@ -4,8 +4,8 @@ import { StyleSheet, Text, SafeAreaView, View, Button, Pressable} from 'react-na
 import { WebView } from 'react-native-webview';
 
 export default function App() {
-  const rootURL = 'http://192.168.50.37:5173'
-  // const rootURL = 'http://10.102.180.67:5173'
+  // const rootURL = 'http://192.168.50.37:5173'
+  const rootURL = 'http://10.102.180.67:5173'
 
   const [viewURL, setViewURL] = useState(rootURL);
 
@@ -32,6 +32,11 @@ export default function App() {
           onPress={() => setViewURL(`${rootURL}/volume`)}
           >
           <Text style={styles.button_text}>Volume</Text>
+        </Pressable>
+        <Pressable style={styles.main_pressable}
+          onPress={() => setViewURL(`https://kitware.github.io/glance/app/`)}
+          >
+          <Text style={styles.button_text}>Glance</Text>
         </Pressable>
       </View>
     </SafeAreaView>
