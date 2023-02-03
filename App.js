@@ -2,11 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react'
 import { StyleSheet, Text, SafeAreaView, View, Button, Pressable} from 'react-native';
 import { WebView } from 'react-native-webview';
+import config from './server-config.json'
 
 export default function App() {
-  // const rootURL = 'http://192.168.50.37:5173'
-  // const rootURL = 'http://10.102.180.67:5173'
-  const rootURL = 'http://10.102.156.9:5173'
+  const rootURL = `http://${config.host}:${config.port}`;
 
   const [viewURL, setViewURL] = useState(`${rootURL}/slices`);
 
